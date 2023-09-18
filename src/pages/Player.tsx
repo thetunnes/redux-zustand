@@ -7,7 +7,10 @@ import { LoadingModule } from '../components/LoadingModule';
 import { useCurrentLesson, useStore } from '../zustand-store';
 
 export function Player() {
-  const { course, load } = useStore()
+  const { course, load } = useStore(store => ({
+    course: store.course,
+    load: store.load
+  }))
 
   const { currentLesson } = useCurrentLesson()
 

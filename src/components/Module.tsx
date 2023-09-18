@@ -11,11 +11,12 @@ interface Props {
 
 export function Module({ amountOfLessons, moduleIndex, title }: Props) {
 
-  const { currentLessonIndex, currentModuleIndex, play } = useStore()
-
-  const lessons = useStore(
-    (state) => state.course?.modules[moduleIndex].lessons
-  );
+  const { currentLessonIndex, currentModuleIndex, lessons, play } = useStore(store => ({
+    currentLessonIndex: store.currentLessonIndex,
+    currentModuleIndex: store.currentModuleIndex,
+    play: store.play,
+    lessons: store.course?.modules[moduleIndex].lessons
+  }))
 
   return (
     <Collapsible.Root className="group" defaultOpen={currentModuleIndex === moduleIndex}>
