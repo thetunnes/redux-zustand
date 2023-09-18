@@ -37,7 +37,7 @@ export const useStore = create<PlayerState>((set, get) => {
 
       set({ isLoading: true})
       const response = await api.get('/courses/1') 
-      set({ isLoading: false})
+      set({ isLoading: false, course: response.data })
     },
 
     play: ([moduleIndex, lessonIndex]) => {
@@ -75,7 +75,7 @@ export const useStore = create<PlayerState>((set, get) => {
 export const useCurrentLesson = () =>
   useStore((state) => {
     const { currentLessonIndex, currentModuleIndex } = state;
-
+    console.log(currentLessonIndex, state.course)
     const currentModule = state.course?.modules[currentModuleIndex];
     const currentLesson = currentModule?.lessons[currentLessonIndex];
 
